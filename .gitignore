@@ -1,0 +1,15 @@
+/vendor
+/node_modules
+.env
+.idea/.name
+.idea/encodings.xml
+.idea/laravel5.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/workspace.xml
+database/.gitignore
+resources/assets/vendor/json-processor/.gitignore
+storage/.gitignore
+storage/framework/.gitignore

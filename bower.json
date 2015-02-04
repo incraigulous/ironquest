@@ -1,0 +1,9 @@
+{
+  "name": "App Name",
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "class.js": "https://github.com/incraigulous/classjs.git",
+    "json-processor": "~0.0.4",
+    "jquery-simple-drawer": "~1.0.0"
+  }
+}
