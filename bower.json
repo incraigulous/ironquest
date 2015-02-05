@@ -1,9 +1,18 @@
 {
-  "name": "App Name",
+  "name": "IronQuest",
   "dependencies": {
     "bootstrap": "~3.3.2",
+    "jasny-bootstrap": "~3.1.3",
+    "jquery-colorbox": "~1.5.14",
     "class.js": "https://github.com/incraigulous/classjs.git",
     "json-processor": "~0.0.4",
-    "jquery-simple-drawer": "~1.0.0"
+    "jquery-simple-drawer": "~1.0.0",
+    "countto": "*",
+    "jquery.easing": "~1.3.1",
+    "FitText.js": "~1.2.0",
+    "fitvids": "~1.1.0",
+    "jquery.scrollTo": "~1.4.14",
+    "stellar.js": "~0.6.2",
+    "stickyNavbar.js": "~1.1.3"
   }
 }

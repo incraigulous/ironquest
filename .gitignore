@@ -13,3 +13,5 @@ database/.gitignore
 resources/assets/vendor/json-processor/.gitignore
 storage/.gitignore
 storage/framework/.gitignore
+.DS_Store
+.idea/ironquest5.iml
