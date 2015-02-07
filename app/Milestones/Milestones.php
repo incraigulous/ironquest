@@ -8,17 +8,43 @@
 
 namespace App\Milestones;
 
-use App\AttributeModifier, App\Target, App\Attunement, App\Range;
+use App\AttributeModifier, App\Target, App\Attunement, App\Range, App\Abilities\Abilities;
 
-class Milestone {
+class Milestones {
+
+    function __construct(Abilities $abilities) {
+        $this->abilities = $abilities;
+    }
 
     function getOptionData() {
         return array(
-            'attributeModifierOptions' => App::make('Ironquest\Repos\AttributeModifierRepoInterface')->listColumnOptions(),
-            'targetOptions' => App::make('Ironquest\Repos\TargetRepoInterface')->listOptions(),
-            'attunementOptions' => App::make('Ironquest\Repos\AttunementRepoInterface')->listOptions(),
-            'rangeOptions' => App::make('Ironquest\Repos\RangeRepoInterface')->listOptions()
+            'attributeModifierOptions' => AttributeModifier::listColumnOptions(),
+            'targetOptions' => Target::listOptions(),
+            'attunementOptions' => Attunement::listOptions(),
+            'rangeOptions' => Range::listOptions()
         );
+    }
+
+    /**
+     * The abilities class actually takes care of creating our milestone.
+     *
+     * @param array $data
+     * @return boolean
+     */
+    public function create(array $data)
+    {
+        $this->abilities->create($data);
+    }
+
+    /**
+     * The abilities class actually takes care of updating our milestone.
+     *
+     * @param array $data
+     * @return boolean
+     */
+    public function update(array $data)
+    {
+        $this->abilities->update($data);
     }
 
 }

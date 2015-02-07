@@ -1,6 +1,8 @@
 <?php
 
-class ironQuestGuard extends Illuminate\Auth\Guard
+namespace App\Services\Guard;
+
+class Guard extends \Illuminate\Auth\Guard
 {
   function checkAccess ($level) {
       if ($this->guest()) {

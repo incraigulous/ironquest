@@ -8,7 +8,24 @@
 
 namespace App\Abilities;
 
+use App\Ability;
+use App\Milestone;
 
 class Abilities {
 
+    public function create(array $input)
+    {
+        $ability = Ability::create($input['ability']);
+        $ability->targets->attach($input['targets']);
+        $ability->ranges->attach($input['ranges']);
+        $ability->attunements->attach($input['attunements']);
+        $milestone = new Milestone($input['milestones']);
+        $ability->milestone()->save($milestone);
+        return $ability;
+    }
+
+    public function update(array $input)
+    {
+
+    }
 }

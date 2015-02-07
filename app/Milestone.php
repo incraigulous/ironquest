@@ -1,10 +1,10 @@
-<?php namespace Ironquest;
+<?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use McCool\LaravelAutoPresenter\PresenterInterface;
 
-class Milestone extends Model implements PresenterInterface
-{
+class Milestone extends Model {
+    use OptionableTrait;
+
     //protected $table = '';
 
     //protected $primaryKey = '';
@@ -12,9 +12,4 @@ class Milestone extends Model implements PresenterInterface
     protected $fillable = [];
 
     protected $guarded = array('id');
-
-    public function getPresenter()
-    {
-        return 'Ironquest\Presenters\MilestonePresenter';
-    }
 }
