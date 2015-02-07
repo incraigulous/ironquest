@@ -1,18 +1,14 @@
 <?php namespace App\Http\Controllers;
 
-use App\Services\Milestone\Milestone as Milestone;
-use App\Services\AttributeModifier\AttributeModifier;
-use View as View;
-use Input as Input;
-use Config as Config;
-use Redirect as Redirect;
-use App\Http\Requests\MilestoneUpdateRequest;
-use App\Http\Requests\MilestoneStoreRequest;
+use App\Milestones\Milestones, App\Http\Requests\MilestoneUpdateRequest, App\Http\Requests\MilestoneStoreRequest, App\Milestone;
+use View, Input, Config, Redirect, Exception;
 
 class MilestoneController extends BaseController {
 
-	public function __construct()
+	public function __construct(Milestones $milestones)
 	{
+		$this->milestones = $milestones;
+
 		$this->middleware('access.player', ['only' => ['index', 'show']]);
 		$this->middleware('access.manager', ['except' => ['index', 'show']]);
 	}
@@ -47,10 +43,14 @@ class MilestoneController extends BaseController {
 	 */
 	public function store(MilestoneStoreRequest $request)
 	{
-        if (!$result = $this->milestone->create(Input::all())) {
-            return Redirect::route('milestones.create')->withInput()->withErrors($this->milestone->errors());
-        }
+		try {
+			$result = $this->milestones->create(Input::all());
+		} catch (Exception $exception) {
+			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
+			return Redirect::route('milestones.create');
+		}
 
+		Session::flash('message', array('message' => 'Milestone Created!', 'context' => 'success'));
         return Redirect::route('milestones.edit', array($result));
 	}
 
@@ -75,8 +75,9 @@ class MilestoneController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        $milestone = $this->milestone->find($id);
+        $milestone = Milestone::find($id);
         if (!$milestone) {
+			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
             return $this->message('No milestone found', $this->not_found_message);
         }
 
@@ -92,11 +93,15 @@ class MilestoneController extends BaseController {
 	 */
 	public function update(MilestoneUpdateRequest $request, $id)
 	{
-        if (!$result = $this->milestone->update(Input::all())) {
-            return Redirect::route('milestones.edit')->withInput()->withErrors($this->milestone->errors());
-        }
+		try {
+			$this->milestones->update(Input::all());
+		} catch (Exception $exception) {
+			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
+			return Redirect::route('milestones.edit', $id);
+		}
 
-        return Redirect::route('milestones.edit', array($result));
+		Session::flash('message', array('message' => 'Milestone updated!', 'context' => 'success'));
+        return Redirect::route('milestones.edit', $id);
 	}
 
 	/**

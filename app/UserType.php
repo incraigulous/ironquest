@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class UserType extends Model {
     use SoftDeletingTrait;
+    use OptionableTrait;
 
     //protected $table = '';
 

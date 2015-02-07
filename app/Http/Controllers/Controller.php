@@ -8,6 +8,8 @@ abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
+	protected $errorFlash = 'An unexpected error has occurred.';
+
 	function message($header, $message) {
 		return view('message', array('header' => $header, 'message' => $message));
 	}

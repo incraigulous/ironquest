@@ -3,6 +3,8 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Ability extends Model {
+    use OptionableTrait;
+
     //protected $table = '';
 
     //protected $primaryKey = '';

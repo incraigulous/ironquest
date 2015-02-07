@@ -2,7 +2,6 @@
 
 use App\Repos\UserRepoInterface as User;
 use App\Repos\UserTypeRepoInterface as UserType;
-use App\Validators\UserValidator as Validator;
 use Redirect;
 use Input;
 use Auth;
@@ -12,13 +11,11 @@ class UserController extends BaseController {
 
     public function __construct(
         User $user,
-        UserType $userType,
-        Validator $validator
+        UserType $userType
     )
     {
         $this->user = $user;
         $this->userType = $userType;
-        $this->validator = $validator;
 
         $this->middleware('access.manager', ['except' => ['login', 'processLogin']]);
     }
