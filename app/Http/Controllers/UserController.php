@@ -31,7 +31,7 @@ class UserController extends BaseController {
 	 */
 	public function index()
 	{
-        return  view('user.index', array('users' => $this->user->allPaginated()));
+        return view('user.index', array('users' => $this->user->allPaginated()));
 	}
 
 	/**
@@ -42,7 +42,7 @@ class UserController extends BaseController {
 	 */
 	public function create()
 	{
-        return  view('user.create', array('userTypeOptions' => $this->userType->listOptions('level')));
+        return view('user.create', array('userTypeOptions' => $this->userType->listOptions('level')));
 	}
 
 	/**
@@ -51,13 +51,8 @@ class UserController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(UserStoreRequest $request)
 	{
-        $validator = $this->validator->make(Input::all());
-        if ($validator->fails()) {
-            return Redirect::route('users.create')->withInput()->withErrors($validator->messages());
-        }
-
         try {
             $result = $this->milestone->create(Input::all());
         } catch (Exception $e) {
@@ -103,12 +98,8 @@ class UserController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(UserUpdateRequest $request, $id)
 	{
-        $validator = $this->validator->existing()->make(Input::all());
-        if ($validator->fails()) {
-            return Redirect::route('users.edit')->withInput()->withErrors($validator->messages());
-        }
         try {
             $this->user->update($id, Input::all());
         } catch (Exception $e) {

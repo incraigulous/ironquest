@@ -2,10 +2,12 @@
 
 use App\Services\Milestone\Milestone as Milestone;
 use App\Services\AttributeModifier\AttributeModifier;
-use \View as View;
-use \Input as Input;
-use \Config as Config;
-use \Redirect as Redirect;
+use View as View;
+use Input as Input;
+use Config as Config;
+use Redirect as Redirect;
+use App\Http\Requests\MilestoneUpdateRequest;
+use App\Http\Requests\MilestoneStoreRequest;
 
 class MilestoneController extends BaseController {
 
@@ -43,7 +45,7 @@ class MilestoneController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(MilestoneStoreRequest $request)
 	{
         if (!$result = $this->milestone->create(Input::all())) {
             return Redirect::route('milestones.create')->withInput()->withErrors($this->milestone->errors());
@@ -88,7 +90,7 @@ class MilestoneController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(MilestoneUpdateRequest $request, $id)
 	{
         if (!$result = $this->milestone->update(Input::all())) {
             return Redirect::route('milestones.edit')->withInput()->withErrors($this->milestone->errors());
