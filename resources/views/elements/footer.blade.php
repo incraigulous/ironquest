@@ -21,10 +21,5 @@
 <!-- ==============================================
 SCRIPTS
 =============================================== -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-{{ Minify::javascriptDir('/js/bootstrap/') }}
-{{ Minify::javascriptDir('/js/jqueryPlugins/') }}
-{{ Minify::javascriptDir('/js/plugins/') }}
-{{ Minify::javascriptDir('/js/base/') }}
-{{ Minify::javascriptDir('/js/quatro/') }}
+<script type="text/javascript" src="{{ elixir("js/all.js") }}"></script>

@@ -8,4 +8,8 @@ abstract class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
+	function message($header, $message) {
+		return view('message', array('header' => $header, 'message' => $message));
+	}
+
 }

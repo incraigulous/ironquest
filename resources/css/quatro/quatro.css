@@ -336,7 +336,7 @@ a:focus,
     text-align: center;
     color:#aaa;
     color:rgba(0,0,0,0.2);
-    background: url('../../images/preloader.gif') 50% 0 no-repeat;
+    background: url('../images/preloader.gif') 50% 0 no-repeat;
 }
 
 /*----------------------
@@ -479,7 +479,7 @@ a:focus,
 }
 
 #home .header-content.pattern-bg{
-    background:url(../../images/pattern-bg.png);
+    background:url(../images/pattern-bg.png);
     background-color:rgba(0,0,0,0.5);
 }
 
@@ -1210,7 +1210,7 @@ a:focus,
     display:block;
     margin-bottom:30px;
     margin:0 0 30px;
-    background:url(../../images/dark_mosaic.png) 0 0;
+    background:url(../images/dark_mosaic.png) 0 0;
     width:auto;
     height:80px;
     font-size:48px;

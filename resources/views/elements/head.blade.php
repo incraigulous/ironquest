@@ -19,12 +19,7 @@
     <!-- ==============================================
     CSS
     =============================================== -->
-    {{ Minify::stylesheetDir('/css/bootstrap/') }}
-    {{ Minify::stylesheetDir('/css/font-awesome/') }}
-    {{ Minify::stylesheetDir('/css/flexslider/') }}
-    {{ Minify::stylesheetDir('/css/quatro/') }}
-    {{ Minify::stylesheetDir('/css/base/') }}
-    {{ Minify::stylesheetDir('/css/form/') }}
+    <link rel="stylesheet" href="{{ elixir("css/all.css") }}">
 
     <!-- ==============================================
     Fonts
@@ -38,10 +33,10 @@
     =============================================== -->
 
     <!--[if lt IE 9]>
-    {{ Minify::javascriptDir('/js/respond/') }}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
     <![endif]-->
 
-    {{ Minify::javascriptDir('/js/modernizr/') }}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
 
 </head>

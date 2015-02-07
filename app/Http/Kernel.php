@@ -27,6 +27,11 @@ class Kernel extends HttpKernel {
 		'auth' => 'App\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
+		'access.admin' => 'App\Http\Middleware\Access\AdminAccess',
+		'access.manager' => 'App\Http\Middleware\Access\managerAccess',
+		'access.moderator' => 'App\Http\Middleware\Access\moderatorAccess',
+		'access.gameMaster' => 'App\Http\Middleware\Access\gameMasterAccess',
+		'access.player' => 'App\Http\Middleware\Access\playerAccess',
 	];
 
 }

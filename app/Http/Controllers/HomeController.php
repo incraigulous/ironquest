@@ -1,36 +1,18 @@
 <?php namespace App\Http\Controllers;
 
-class HomeController extends Controller {
+use App\Repos\Eloquent\HomeRepo as Home;
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
+class HomeController extends BaseController {
 
 	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		//$this->middleware('auth');
-	}
-
-	/**
-	 * Show the application dashboard to the user.
+	 * View content.
+	 * GET /home/
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function show()
 	{
-		return view('home');
+        return view('home');
 	}
 
 }
