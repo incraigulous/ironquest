@@ -6,7 +6,7 @@
  * Time: 10:11 PM
  */
 
-namespace App;
+namespace App\Milestones;
 
 
 class Milestone {
