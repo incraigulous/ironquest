@@ -1,7 +1,27 @@
-{{ BootForm::text('First Name', 'first_name')->placeholder('First Name') }}
-{{ BootForm::text('Last Name', 'last_name')->placeholder('Last Name') }}
-{{ BootForm::email('Email', 'email')->placeholder('Email') }}
-{{ BootForm::text('Username', 'username')->placeholder('Username') }}
-{{ BootForm::select('Type', 'user_type_id')->options($userTypeOptions) }}
-{{ BootForm::password('Password', 'password')->placeholder('Password') }}
-{{ BootForm::password('Confirm Password', 'password_confirmation')->placeholder('Confirm Password') }}
+{!! Form::openGroup('first_name') !!}
+{!! Form::text('first_name', null, array('placeholder' => 'First Name')) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('last_name') !!}
+{!! Form::text('last_name', null, array('placeholder' => 'Last Name')) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('email') !!}
+{!! Form::email('email', null, array('placeholder' => 'Email')) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('username') !!}
+{!! Form::text('username', null, array('placeholder' => 'Username')) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('type') !!}
+{!! Form::select('type', $userTypeOptions) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('password') !!}
+{!! Form::password('password', array('placeholder' => 'Password')) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('password_confirmation') !!}
+{!! Form::password('password_confirmation', array('placeholder' => 'Confirm Password')) !!}
+{!! Form::closeGroup() !!}

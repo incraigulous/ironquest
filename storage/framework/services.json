@@ -28,6 +28,7 @@
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
         "App\\Providers\\AuthServiceProvider",
+        "App\\Providers\\HtmlServiceProvider",
         "DaveJamesMiller\\Breadcrumbs\\ServiceProvider"
     ],
     "eager": [
@@ -125,6 +126,8 @@
         "auth.password.tokens": "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider",
         "translator": "Illuminate\\Translation\\TranslationServiceProvider",
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
+        "html": "App\\Providers\\HtmlServiceProvider",
+        "form": "App\\Providers\\HtmlServiceProvider",
         "breadcrumbs": "DaveJamesMiller\\Breadcrumbs\\ServiceProvider"
     },
     "when": {
@@ -139,6 +142,7 @@
         "Illuminate\\Redis\\RedisServiceProvider": [],
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
+        "App\\Providers\\HtmlServiceProvider": [],
         "DaveJamesMiller\\Breadcrumbs\\ServiceProvider": []
     }
 }

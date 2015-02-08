@@ -15,9 +15,9 @@ trait OptionableTrait {
 
     protected $database = 'ironquest';
 
-    function listOptions($orderBy = 'id', $format = array('id' => 'name'))
+    function scopeListOptions($query, $orderBy = 'id', $format = array('id' => 'name'))
     {
-        $data = $this->orderBy($orderBy)->get()->toArray();
+        $data = $query->orderBy($orderBy)->get()->toArray();
         $result = [];
         foreach($data as $row) {
             $result[$row[key($format)]] = $row[$format[key($format)]];
@@ -25,7 +25,7 @@ trait OptionableTrait {
         return $result;
     }
 
-    public function getColumnsNames()
+    function getColumnsNames($query)
     {
         $connection = DB::connection();
         $connection->getSchemaBuilder();
@@ -36,9 +36,9 @@ trait OptionableTrait {
         return array_unique($connection->getPostProcessor()->processColumnListing($results));
     }
 
-    function listColumnOptions()
+    static function listColumnOptions($query)
     {
-        $columns = $this->getColumnsNames();
+        $columns =  $query->getColumnsNames();
         $result = [];
         foreach($columns as $column) {
             if (($column != 'id') &&

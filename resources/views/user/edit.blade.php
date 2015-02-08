@@ -32,8 +32,8 @@
             </div>
 
             <div class="row">
-               {{ BootForm::open()->put()->attribute('class', 'col-sm-8 col-sm-offset-2')->action('/users/' . $user->id) }}
-                    {{ Bootform::bind($user) }}
+                {!! Form::model($user, ['route' => array('users.update', $user->id), 'method' => 'put', 'class' => 'col-sm-8 col-sm-offset-2']) !!}
+
                     @include('user.form')
 
                     <p class="text-center">
@@ -42,7 +42,7 @@
                             Save User
                         </button>
                     </p>
-                {{ BootForm::close() }}
+                {!! Form::close() !!}
 
             </div>
 

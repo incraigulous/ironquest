@@ -9,17 +9,17 @@
 
                 <div class="row">
 
-                   {{ BootForm::open()->attribute('class', 'col-sm-8 col-sm-offset-2')->action('/users')}}
+                    {!! Form::open([ 'route' => 'users.edit', 'class' => 'col-sm-8 col-sm-offset-2']) !!}
+
                     @include('user.form')
 
-                        <p class="text-center">
-                            <button name="submit" type="submit" class="btn btn-quattro" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent">
-                                <i class="fa fa-user"></i>
-                                Create User
-                            </button>
-                        </p>
-                    {{ BootForm::close() }}
-
+                    <p class="text-center">
+                        <button name="submit" type="submit" class="btn btn-quattro" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent">
+                            <i class="fa fa-user"></i>
+                            Create User
+                        </button>
+                    </p>
+                    {!! Form::close() !!}
                 </div>
 
             </div>

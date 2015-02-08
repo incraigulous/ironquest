@@ -72,7 +72,7 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $user = User::find($id)->with('UserType');
+        $user = User::find($id)->with('UserType')->first();
         if (!$user) {
             return $this->message('No user found', $this->not_found_message);
         }
