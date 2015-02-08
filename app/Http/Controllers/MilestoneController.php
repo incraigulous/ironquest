@@ -78,7 +78,7 @@ class MilestoneController extends Controller {
         $milestone = Milestone::find($id);
         if (!$milestone) {
 			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
-            return $this->message('No milestone found', $this->not_found_message);
+            return $this->message('No milestone found', $this->$notFoundMessage);
         }
 
         return View::make('milestone.edit', $milestone);

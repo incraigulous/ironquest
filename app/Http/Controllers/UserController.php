@@ -3,7 +3,7 @@
 use App\Http\Requests\UserStoreRequest, App\Http\Requests\UserUpdateRequest,
     App\Commands\Users\RestoreUser,
     App\User, App\UserType,
-    Redirect, Request, Auth, Exception;
+    Redirect, Request, Auth, Exception, DB;
 
 class UserController extends Controller {
 
@@ -43,12 +43,13 @@ class UserController extends Controller {
 	public function store(UserStoreRequest $request)
 	{
         try {
-            $this->dispatchFrom('Command\Users\CreateUser', $request);
+            $this->dispatchFrom('App\Commands\Users\CreateUser', $request);
         } catch (Exception $e) {
+            dd($e);
             return Redirect::route('users.create')->with('message', 'An error has occured.')->with('context', 'danger');
         }
 
-        return Redirect::route('users.edit', array(DB::getPdo()->lastInsertId))->with('message', 'User created!')->with('context', 'success');
+        return Redirect::route('users.edit', array(DB::getPdo()->lastInsertId()))->with('message', 'User created!')->with('context', 'success');
 	}
 
 	/**
@@ -72,12 +73,12 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $user = User::find($id)->with('UserType')->first();
+        $user = User::find($id)->withTrashed()->with('UserType')->first();
         if (!$user) {
-            return $this->message('No user found', $this->not_found_message);
+            return $this->message('No user found', $this->$notFoundMessage);
         }
 
-        return  view('user.edit')->with('user', $user)->with('userTypeOptions', UserTYpe::listOptions('level'));
+        return view('user.edit')->with('user', $user)->with('userTypeOptions', UserTYpe::listOptions('level'));
 	}
 
 	/**

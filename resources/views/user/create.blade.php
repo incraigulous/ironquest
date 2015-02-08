@@ -9,7 +9,7 @@
 
                 <div class="row">
 
-                    {!! Form::open([ 'route' => 'users.edit', 'class' => 'col-sm-8 col-sm-offset-2']) !!}
+                    {!! Form::open([ 'route' => 'users.store', 'class' => 'col-sm-8 col-sm-offset-2']) !!}
 
                     @include('user.form')
 
