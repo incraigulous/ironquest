@@ -1,7 +1,7 @@
 @extends('layouts.leftSidebar')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('directory') }}
+    {!! Breadcrumbs::render('directory') !!}
 @stop
 
 @section('sidebar')

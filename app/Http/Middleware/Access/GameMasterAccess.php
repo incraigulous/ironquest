@@ -1,6 +1,6 @@
 <?php namespace App\Http\Middleware\Access;
 
-class GameMasterAccess extends AcessMiddlewareBase {
+class GameMasterAccess extends AccessMiddlewareBase {
 	protected $level = 3;
 
 }

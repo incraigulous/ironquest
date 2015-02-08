@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('users') }}
+    {!! Breadcrumbs::render('users') !!}
 @stop
 
 @section('content')

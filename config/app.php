@@ -146,6 +146,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\AuthServiceProvider',
+        'DaveJamesMiller\Breadcrumbs\ServiceProvider'
 
 	],
 
@@ -194,7 +195,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+        'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade'
 
-	],
+    ],
 
 ];

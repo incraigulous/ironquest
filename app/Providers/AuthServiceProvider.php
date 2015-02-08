@@ -1,27 +1,23 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: craigwann1
- * Date: 2/6/15
- * Time: 11:49 PM
- */
+<?php namespace App\Providers;
 
-namespace App\Providers;
-
-use Illuminate\Auth\EloquentUserProvider;
-use App\Services\Guard;
+use Illuminate\Support\ServiceProvider, Illuminate\Auth\EloquentUserProvider, App\Services\Guard;
 use App;
 
-class AuthServiceProvider {
+class AuthServiceProvider extends ServiceProvider {
 
     public function boot() {
         $this->app['auth']->extend('ironQuestAuth', function()
         {
             $hasher = App::make('hash');
-            return new Guard(
+            return new App\Services\Guard(
                 new EloquentUserProvider($hasher, 'App\User'),
                 App::make('session.store')
             );
         });
+    }
+
+    public function register()
+    {
+
     }
 }

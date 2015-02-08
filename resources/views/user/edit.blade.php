@@ -1,7 +1,7 @@
 @extends('layouts.darkForm')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('user', $user) }}
+    {!! Breadcrumbs::render('user', $user) !!}
 @stop
 
 @section('content')

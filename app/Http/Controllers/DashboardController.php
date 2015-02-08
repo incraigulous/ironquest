@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class DashboardController extends BaseController {
+class DashboardController extends Controller {
 
     public function __construct()
     {

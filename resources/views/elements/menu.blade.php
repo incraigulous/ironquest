@@ -22,14 +22,14 @@
             <ul class="nav navbar-nav navbar-right">
             @if (Auth::guest())
                 <li>
-                    <a href="/login">Login</a>
+                    <a href="auth/login">Login</a>
                 </li>
             @else
                 <li>
                    <a href="{{ route('dashboard.show') }}"><i class="fa fa-user"></i> {{Auth::user()->username}}</a>
                 </li>
                 <li>
-                    <a href="{{ route('users.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+                    <a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout</a>
                 </li>
             @endif
             </ul>

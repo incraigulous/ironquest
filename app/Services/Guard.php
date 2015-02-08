@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Guard;
+namespace App\Services;
 
 class Guard extends \Illuminate\Auth\Guard
 {

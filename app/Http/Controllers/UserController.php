@@ -1,22 +1,14 @@
 <?php namespace App\Http\Controllers;
 
-use App\Repos\UserRepoInterface as User;
-use App\Repos\UserTypeRepoInterface as UserType;
-use Redirect;
-use Input;
-use Auth;
-use Exception;
+use App\Http\Requests\UserStoreRequest, App\Http\Requests\UserUpdateRequest,
+    App\Commands\Users\RestoreUser,
+    App\User, App\UserType,
+    Redirect, Request, Auth, Exception;
 
-class UserController extends BaseController {
+class UserController extends Controller {
 
-    public function __construct(
-        User $user,
-        UserType $userType
-    )
+    public function __construct()
     {
-        $this->user = $user;
-        $this->userType = $userType;
-
         $this->middleware('access.manager', ['except' => ['login', 'processLogin']]);
     }
 
@@ -28,7 +20,7 @@ class UserController extends BaseController {
 	 */
 	public function index()
 	{
-        return view('user.index', array('users' => $this->user->allPaginated()));
+        return view('user.index', array('users' => User::paginate(15)));
 	}
 
 	/**
@@ -39,7 +31,7 @@ class UserController extends BaseController {
 	 */
 	public function create()
 	{
-        return view('user.create', array('userTypeOptions' => $this->userType->listOptions('level')));
+        return view('user.create', array('userTypeOptions' => UserType::listOptions('level')));
 	}
 
 	/**
@@ -51,12 +43,12 @@ class UserController extends BaseController {
 	public function store(UserStoreRequest $request)
 	{
         try {
-            $result = $this->milestone->create(Input::all());
+            $this->dispatchFrom('Command\Users\CreateUser', $request);
         } catch (Exception $e) {
             return Redirect::route('users.create')->with('message', 'An error has occured.')->with('context', 'danger');
         }
 
-        return Redirect::route('users.edit', array($result))->with('message', 'User created!')->with('context', 'success');
+        return Redirect::route('users.edit', array(DB::getPdo()->lastInsertId))->with('message', 'User created!')->with('context', 'success');
 	}
 
 	/**
@@ -80,12 +72,12 @@ class UserController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        $user = $this->user->find($id, array('userType'));
+        $user = User::find($id)->with('UserType');
         if (!$user) {
             return $this->message('No user found', $this->not_found_message);
         }
 
-        return  view('user.edit')->with('user', $user)->with('userTypeOptions', $this->userType->listOptions('level'));
+        return  view('user.edit')->with('user', $user)->with('userTypeOptions', UserTYpe::listOptions('level'));
 	}
 
 	/**
@@ -98,7 +90,7 @@ class UserController extends BaseController {
 	public function update(UserUpdateRequest $request, $id)
 	{
         try {
-            $this->user->update($id, Input::all());
+            $this->dispatchFrom('Command\Users\UpdateUser', $request, ['id' => $id]);
         } catch (Exception $e) {
             return Redirect::route('users.edit')->with('message', 'An error has occurred.')->with('context', 'danger');
         }
@@ -115,7 +107,7 @@ class UserController extends BaseController {
 	public function destroy($id)
 	{
         try {
-            $this->milestone->delete($id);
+            User::delete($id);
         } catch (Exception $e) {
             return Redirect::route('users.edit', array($id))->with('message', 'Error deleting user!')->with('context', 'danger');
         }
@@ -125,7 +117,7 @@ class UserController extends BaseController {
     public function revive($id)
     {
         try {
-            $this->milestone->revive($id);
+            $this->dispatch(new RestoreUser($id));
         } catch (Exception $e) {
             return Redirect::route('users.edit', array($id))->with('message', 'Error reviving user!')->with('context', 'danger');
         }

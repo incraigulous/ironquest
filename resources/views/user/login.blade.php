@@ -1,7 +1,7 @@
 @extends('layouts.darkForm')
 
 @section('content')
-        <section id="contact" class="parallax-bg light-typo padding-top-bottom " data-parallax-background="/images/contact-bg.jpg" data-stellar-background-ratio=".1">
+<section id="contact" class="parallax-bg light-typo padding-top-bottom " data-parallax-background="/images/contact-bg.jpg" data-stellar-background-ratio=".1">
 
             <h1 class="section-title">Login</h1>
 

@@ -1,8 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Repos\Eloquent\HomeRepo as Home;
-
-class HomeController extends BaseController {
+class HomeController extends Controller {
 
 	/**
 	 * View content.

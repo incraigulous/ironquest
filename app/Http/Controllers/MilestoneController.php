@@ -3,7 +3,7 @@
 use App\Milestones\Milestones, App\Http\Requests\MilestoneUpdateRequest, App\Http\Requests\MilestoneStoreRequest, App\Milestone;
 use View, Input, Config, Redirect, Exception;
 
-class MilestoneController extends BaseController {
+class MilestoneController extends Controller {
 
 	public function __construct(Milestones $milestones)
 	{
@@ -44,14 +44,14 @@ class MilestoneController extends BaseController {
 	public function store(MilestoneStoreRequest $request)
 	{
 		try {
-			$result = $this->milestones->create(Input::all());
+            $this->dispatchFrom('Command\Abilities\CreateAbility', $request);
 		} catch (Exception $exception) {
 			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
 			return Redirect::route('milestones.create');
 		}
 
 		Session::flash('message', array('message' => 'Milestone Created!', 'context' => 'success'));
-        return Redirect::route('milestones.edit', array($result));
+        return Redirect::route('milestones.edit', array(DB::getPdo()->lastInsertId));
 	}
 
 	/**

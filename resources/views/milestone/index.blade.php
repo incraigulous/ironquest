@@ -1,7 +1,7 @@
 @extends('layouts.leftSidebar')
 
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('milestones') }}
+    {!! Breadcrumbs::render('milestones') !!}
 @stop
 
 @section('sidebar')

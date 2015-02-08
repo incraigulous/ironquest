@@ -1,6 +1,6 @@
 <?php namespace App\Http\Middleware\Access;
 
-class AdminAccess extends AcessMiddlewareBase {
+class AdminAccess extends AccessMiddlewareBase {
 	protected $level = 10;
 
 }

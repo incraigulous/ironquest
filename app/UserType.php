@@ -1,10 +1,10 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserType extends Model {
-    use SoftDeletingTrait;
+    use SoftDeletes;
     use OptionableTrait;
 
     //protected $table = '';

@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class DirectoryController extends BaseController {
+class DirectoryController extends Controller {
 
 	public function __construct()
 	{

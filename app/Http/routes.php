@@ -13,6 +13,7 @@
 
 //HOME
 Route::get('/', array('as' => 'home.index', 'uses' => 'HomeController@show'));
+Route::get('/home', array('as' => 'home.index', 'uses' => 'HomeController@show'));
 
 //DASHBOARD
 Route::get('/dashboard', array('as' => 'dashboard.show', 'uses' => 'DashboardController@show'));
@@ -24,9 +25,6 @@ Route::get('/rules', array('as' => 'directory.show', 'uses' => 'DirectoryControl
 Route::resource('milestones', 'MilestoneController');
 
 //USER
-Route::get('/login', array('as' => 'user.login', 'uses' => 'UserController@login'));
-Route::post('/login', array('as' => 'users.processLogin', 'uses' => 'UserController@processLogin'));
-Route::get('/logout', array('as' => 'users.logout', 'uses' => 'UserController@logout'));
 Route::get('/users/destroy/{id}', array('as' => 'user.destroy', 'uses' => 'UserController@destroy'));
 Route::get('/users/revive/{id}', array('as' => 'user.revive', 'uses' =>'UserController@revive'));
 Route::resource('users', 'UserController');

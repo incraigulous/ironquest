@@ -55,7 +55,7 @@
                     <a href="#home" class="scrollto">Home</a>
                 </li>
                 <li>
-                    <a href="/login" >Login</a>
+                    <a href="/auth/login" >Login</a>
                 </li>
             </ul>
         </div><!--End navbar-collapse -->
