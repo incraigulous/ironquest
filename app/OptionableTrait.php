@@ -11,7 +11,7 @@
 
 namespace App;
 
-use DB;
+use DB; use Schema;
 
 trait OptionableTrait {
 
@@ -29,11 +29,12 @@ trait OptionableTrait {
 
     function scopelistColumnOptions($query)
     {
-        $columns = DB::connection()->getSchemaBuilder()->getColumnListing($this->table);
+        $columns = Schema::getColumnListing($this->getTable());
 
         $result = [];
         foreach($columns as $column) {
             if (($column != 'id') &&
+                ($column != 'name') &&
                 ($column != 'created_at') &&
                 ($column != 'updated_at') &&
                 ($column != 'deleted_at')) {

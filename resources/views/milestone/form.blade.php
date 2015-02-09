@@ -1,31 +1,61 @@
-{{ BootForm::text('Name', 'milestone[name]')->placeholder('Name') }}
-{{ BootForm::textarea('Short Description', 'milestone[short]')->placeholder('Short Description')->attribute('maxlength', 256)->attribute('rows', 3) }}
-{{ BootForm::textarea('Full Text', 'milestone[text]')->placeholder('Full Text') }}
+{!! Form::openGroup('milestone[name]') !!}
+{!! Form::text('milestone[name]', null, array('placeholder' => 'Name')) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('milestone[short]') !!}
+{!! Form::textarea('milestone[short]', null, array('placeholder' => 'Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
+{!! Form::closeGroup() !!}
+
+{!! Form::openGroup('milestone[text]') !!}
+{!! Form::textarea('milestone[text]', null, array('placeholder' => 'Full Text', 'maxlength' => 256, 'rows' => 3)) !!}
+{!! Form::closeGroup() !!}
 
 <hr />
 
 <h2>What does it do?</h2>
 
 <div class="drawer">
-    {{ BootForm::checkbox('It awards an ability.', 'rewards_ability')->attribute('class', 'drawer-toggle') }}
+
+    {!! Form::openGroup('rewards_ability', 'It awards an ability.') !!}
+    {!! Form::checkbox('rewards_ability', null, null, array('class' => 'drawer-toggle')) !!}
+    {!! Form::closeGroup() !!}
+
     <div class="drawer-target">
-        {{ BootForm::textarea('Ability Short Description', 'ability[short]')->placeholder('Ability Short Description')->attribute('maxlength', 256)->attribute('rows', 3) }}
-        {{ BootForm::select('Target', 'targets[]')->attribute('multiple', true)->options($targetOptions) }}
-        {{ BootForm::select('Range', 'ranges[]')->attribute('multiple', true)->options($rangeOptions) }}
-        {{ BootForm::select('Attunement', 'attunements[]')->attribute('multiple', true)->options($attunementOptions) }}
+        {!! Form::openGroup('ability[short]') !!}
+        {!! Form::textarea('ability[short]', null, array('class' => 'drawer-toggle', 'placeholder' => 'Ability Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
+        {!! Form::closeGroup() !!}
+
+        {!! Form::openGroup('targets[]') !!}
+        {!! Form::select('targets[]', $targetOptions, array('multiple' => true)) !!}
+        {!! Form::closeGroup() !!}
+
+        {!! Form::openGroup('ranges[]') !!}
+        {!! Form::select('ranges[]', $rangeOptions, array('multiple' => true)) !!}
+        {!! Form::closeGroup() !!}
+
+        {!! Form::openGroup('attunements[]') !!}
+        {!! Form::select('attunements[]', $attunementOptions, array('multiple' => true)) !!}
+        {!! Form::closeGroup() !!}
     </div>
 </div>
 
 <div class="drawer">
-    {{ BootForm::checkbox('It awards an attribute modifier.', 'rewards_attribute')->attribute('class', 'drawer-toggle') }}
+    {!! Form::openGroup('rewards_attribute', 'It awards an attribute modifier.') !!}
+    {!! Form::checkbox('rewards_attribute', null, null, array('class' => 'drawer-toggle')) !!}
+    {!! Form::closeGroup() !!}
+
     <div class="drawer-target">
         <div class="clone-container">
             <div class="clone-target row">
                 <div class="col-sm-9">
-                    {{ BootForm::select('Attribute', 'attribute_modifier[id][]')->attribute('id', 'attribute')->options(array_merge(array('' => 'Choose Attribute...'), $attributeModifierOptions)) }}
+                    {!! Form::openGroup('attribute_modifier[id][]') !!}
+                    {!! Form::select('attribute_modifier[id][]', array_merge(array('' => 'Choose Attribute...'), $attributeModifierOptions), array('id' => 'attribute')) !!}
+                    {!! Form::closeGroup() !!}
                 </div>
                 <div class="col-sm-2 large-text">
-                    {{ BootForm::text('Attribute Modifier', 'attribute_modifier[mod][]')->attribute('id', 'attribute_modifier')->placeholder('Mod Num') }}
+                    {!! Form::openGroup('attribute_modifier[mod][]') !!}
+                    {!! Form::text('milestone[name]', null, array('placeholder' => 'Mod Num', 'id' => 'attribute_modifier')) !!}
+                    {!! Form::closeGroup() !!}
                 </div>
                 <div class="col-sm-1 large-text">
                     <i class="fa fa-plus-circle clone"></i>

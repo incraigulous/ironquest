@@ -9,7 +9,7 @@
 
                 <div class="row">
 
-                   {{ BootForm::open()->attribute('class', 'col-sm-8 col-sm-offset-2')->action('/milestones')}}
+                    {!! Form::open([ 'route' => 'milestones.store', 'class' => 'col-sm-8 col-sm-offset-2']) !!}
                     @include('milestone.form')
 
                         <p class="text-center">
@@ -18,8 +18,7 @@
                                 Create Milestone
                             </button>
                         </p>
-                    {{ BootForm::close() }}
-
+                    {!! Form::close() !!}
                 </div>
 
             </div>
