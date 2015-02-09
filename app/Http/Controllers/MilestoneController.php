@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Milestones\Milestones, App\Http\Requests\MilestoneUpdateRequest, App\Http\Requests\MilestoneStoreRequest, App\Milestone;
-use View, Input, Config, Redirect, Exception;
+use View, Input, Config, Redirect, Exception, App\AttributeModifier, App\Target, App\Attunement, App\Range;
 
 class MilestoneController extends Controller {
 
@@ -21,7 +21,7 @@ class MilestoneController extends Controller {
 	 */
 	public function index()
 	{
-        return View::make('milestone.index', array('milestones' => $this->milestone->allPaginated()));
+        return View::make('milestone.index', array('milestones' => Milestone::paginate(15)));
 	}
 
 	/**
@@ -32,7 +32,12 @@ class MilestoneController extends Controller {
 	 */
 	public function create()
 	{
-        return View::make('milestone.create', $this->milestone->getOptionData());
+        return View::make('milestone.create', array(
+            'attributeModifierOptions' => AttributeModifier::listColumnOptions(),
+            'targetOptions' => Target::listOptions(),
+            'attunementOptions' => Attunement::listOptions(),
+            'rangeOptions' => Range::listOptions()
+        ));
 	}
 
 	/**

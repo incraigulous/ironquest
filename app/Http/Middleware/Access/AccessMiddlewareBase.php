@@ -1,9 +1,6 @@
 <?php namespace App\Http\Middleware\Access;
 
-use Closure;
-use Auth;
-use Response;
-use Redirect;
+use Closure, Auth, Response, Redirect, Request;
 
 abstract class AccessMiddlewareBase {
 	protected $level;

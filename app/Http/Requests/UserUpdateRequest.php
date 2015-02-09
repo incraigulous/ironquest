@@ -13,7 +13,7 @@ class UserUpdateRequest extends Request {
 			'first_name' => 'required',
 			'last_name' => 'required',
 			'user_type_id' => 'required',
-			'email' => 'required|email|unique:users',
+			'email' => 'required|email',
 			'username' => 'required',
 			'password' => 'required|between:4,16|alpha_num'
 		];

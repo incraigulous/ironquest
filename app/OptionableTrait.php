@@ -11,6 +11,8 @@
 
 namespace App;
 
+use DB;
+
 trait OptionableTrait {
 
     protected $database = 'ironquest';
@@ -25,20 +27,10 @@ trait OptionableTrait {
         return $result;
     }
 
-    function getColumnsNames($query)
+    function scopelistColumnOptions($query)
     {
-        $connection = DB::connection();
-        $connection->getSchemaBuilder();
+        $columns = DB::connection()->getSchemaBuilder()->getColumnListing($this->table);
 
-        $grammar = $connection->getSchemaGrammar();
-        $table = $connection->getTablePrefix().$this->table;
-        $results = $connection->select($grammar->compileColumnExists($table));
-        return array_unique($connection->getPostProcessor()->processColumnListing($results));
-    }
-
-    static function listColumnOptions($query)
-    {
-        $columns =  $query->getColumnsNames();
         $result = [];
         foreach($columns as $column) {
             if (($column != 'id') &&

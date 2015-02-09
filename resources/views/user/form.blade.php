@@ -15,7 +15,7 @@
 {!! Form::closeGroup() !!}
 
 {!! Form::openGroup('type') !!}
-{!! Form::select('type', $userTypeOptions) !!}
+{!! Form::select('user_type_id', $userTypeOptions) !!}
 {!! Form::closeGroup() !!}
 
 {!! Form::openGroup('password') !!}

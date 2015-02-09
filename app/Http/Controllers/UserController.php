@@ -73,9 +73,9 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $user = User::find($id)->withTrashed()->with('UserType')->first();
+        $user = User::withTrashed()->where('id', $id)->first();
         if (!$user) {
-            return $this->message('No user found', $this->$notFoundMessage);
+            return $this->message('No user found', $this->notFoundMessage);
         }
 
         return view('user.edit')->with('user', $user)->with('userTypeOptions', UserTYpe::listOptions('level'));
@@ -91,9 +91,10 @@ class UserController extends Controller {
 	public function update(UserUpdateRequest $request, $id)
 	{
         try {
-            $this->dispatchFrom('Command\Users\UpdateUser', $request, ['id' => $id]);
+            $this->dispatchFrom('App\Commands\Users\UpdateUser', $request, ['id' => $id]);
         } catch (Exception $e) {
-            return Redirect::route('users.edit')->with('message', 'An error has occurred.')->with('context', 'danger');
+            dd($e);
+            return Redirect::route('users.edit', array($id))->with('message', 'An error has occurred.')->with('context', 'danger');
         }
         return Redirect::route('users.edit', array($id))->with('message', 'User Updated!')->with('context', 'success');
 	}
