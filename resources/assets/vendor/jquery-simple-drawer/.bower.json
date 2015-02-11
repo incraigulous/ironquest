@@ -28,6 +28,5 @@
   },
   "_source": "git://github.com/incraigulous/jquery-simple-drawer.git",
   "_target": "~1.0.0",
-  "_originalSource": "jquery-simple-drawer",
-  "_direct": true
+  "_originalSource": "jquery-simple-drawer"
 }

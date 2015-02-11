@@ -4,15 +4,9 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"type": "project",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/incraigulous/laravel-breadcrumbs"
-        }
-    ],
 	"require": {
 		"laravel/framework": "5.0.*",
-        "davejamesmiller/laravel-breadcrumbs": "dev-develop",
+        "davejamesmiller/laravel-breadcrumbs": "~3.0",
 	  	"illuminate/html": "5.0.*@dev"
 	},
 	"require-dev": {

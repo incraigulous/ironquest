@@ -72,3 +72,59 @@ form.no-placeholder .error-message {
     border-color: #777;
     color: #000;
 }
+
+button.multiselect {
+    display: inline;
+    background: transparent;
+    border-radius: 5px;
+    border-color: rgb(119, 119, 119);
+    color: rgb(255, 255, 255);
+    outline: none;
+    height: 52px;
+    font-weight: 300;
+    width: 100%;
+    text-align: left;
+}
+
+button.multiselect b.caret {
+    float: right;
+    margin-top: 7px;
+}
+
+button.multiselect:hover,
+.btn-group.open button.multiselect {
+    background: transparent;
+    color: white;
+}
+
+.btn-group {
+    width: auto;
+    width: 100%;
+}
+
+.multiselect-container {
+    width: 100%
+}
+
+.multiselect-container input {
+    height: 34px;
+}
+
+.multiselect-container input.multiselect-search {
+    color: hsl(0, 0%, 20%);
+}
+
+.multiselect-container input[type=checkbox] {
+    height: 17px;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+    background-color: #d5d5d5;
+    color: hsl(0, 0%, 20%);
+}
+
+form .form-group .multiselect-container label {
+    display: block;
+    text-transform: inherit;
+    font-size: 14px;
+}

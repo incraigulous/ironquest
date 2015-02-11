@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "58b03c3400836587579333d4984a6bfd",
+    "hash": "e1e4e0e4bd58410a9631b3d8e697c65b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -123,34 +124,36 @@
         },
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
-            "version": "dev-develop",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/incraigulous/laravel-breadcrumbs.git",
-                "reference": "f346006e02b46b053f2a1eac2fcdbf3c9a368a26"
+                "url": "https://github.com/davejamesmiller/laravel-breadcrumbs.git",
+                "reference": "5a5d5d1b1f5780359604f7fde11bbf810ff3e9e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/incraigulous/laravel-breadcrumbs/zipball/f346006e02b46b053f2a1eac2fcdbf3c9a368a26",
-                "reference": "f346006e02b46b053f2a1eac2fcdbf3c9a368a26",
+                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/5a5d5d1b1f5780359604f7fde11bbf810ff3e9e4",
+                "reference": "5a5d5d1b1f5780359604f7fde11bbf810ff3e9e4",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "4.*|5.*",
-                "illuminate/view": "4.*|5.*",
-                "php": ">=5.3.0"
+                "illuminate/support": "5.*",
+                "illuminate/view": "5.*",
+                "php": ">=5.4.0"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.0",
-                "phpunit/phpunit": "4.0.*",
-                "satooshi/php-coveralls": "~0.6.0"
+                "mockery/mockery": "0.9.*",
+                "orchestra/testbench": "3.0.*",
+                "phpunit/phpunit": "4.*",
+                "satooshi/php-coveralls": "0.6.*"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "DaveJamesMiller\\Breadcrumbs": "src/"
+                "psr-4": {
+                    "DaveJamesMiller\\Breadcrumbs\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT License"
             ],
@@ -166,10 +169,7 @@
             "keywords": [
                 "laravel"
             ],
-            "support": {
-                "source": "https://github.com/incraigulous/laravel-breadcrumbs/tree/develop"
-            },
-            "time": "2015-01-29 10:06:42"
+            "time": "2015-02-08 21:44:39"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2888,9 +2888,10 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "davejamesmiller/laravel-breadcrumbs": 20,
         "illuminate/html": 20
     },
+    "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

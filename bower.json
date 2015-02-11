@@ -13,6 +13,8 @@
     "fitvids": "~1.1.0",
     "jquery.scrollTo": "~1.4.14",
     "stellar.js": "~0.6.2",
-    "stickyNavbar.js": "~1.1.3"
+    "stickyNavbar.js": "~1.1.3",
+    "bootbox": "~4.3.0",
+    "bootstrap-multiselect": "~0.9.10"
   }
 }
