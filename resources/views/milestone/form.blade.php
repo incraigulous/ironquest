@@ -35,6 +35,8 @@
         {!! Form::openGroup('attunements[]') !!}
         {!! Form::select('attunements[]', $attunementOptions, null, array('multiple' => true, 'placeholder' => 'Select Attunements')) !!}
         {!! Form::closeGroup() !!}
+
+        <hr />
     </div>
 </div>
 
@@ -45,9 +47,8 @@
 
 
     <div class="drawer-target">
-        <div class="clone-container">
-            <div class="clone-target row">
-                <div class="col-sm-9">
+        <div class="repeatable">
+                <div class="col-sm-9 no-left">
                     {!! Form::openGroup('attribute_modifier[id][]') !!}
                     {!! Form::select('attribute_modifier[id][]', array_merge(array('' => 'Choose Attribute...'), $attributeModifierOptions), array('id' => 'attribute')) !!}
                     {!! Form::closeGroup() !!}
@@ -58,14 +59,10 @@
                     {!! Form::closeGroup() !!}
                 </div>
                 <div class="col-sm-1 large-text">
-                    <i class="fa fa-plus-circle clone"></i>
-                    <i class="fa fa-minus-circle delete"></i>
+                    <i class="fa fa-plus repeater-add"></i>
+                    <i class="fa fa-minus repeater-remove"></i>
                 </div>
-            </div>
-        </div>
+         </div>
     </div>
 </div>
-
-<hr />
-
 

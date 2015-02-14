@@ -76,6 +76,10 @@ function process_content(item) {
                 }
         });
     });
+
+    jQuery(item).find('.repeatable').each(function(index, el) {
+        new Repeater(el);
+    });
 }
 
 $(document).ready(function() {

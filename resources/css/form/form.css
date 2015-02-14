@@ -128,3 +128,22 @@ form .form-group .multiselect-container label {
     text-transform: inherit;
     font-size: 14px;
 }
+
+form .repeatable .repeater-add {
+    display: none;
+}
+
+form .repeatable:last-child .repeater-add {
+    display:  block;
+}
+
+form .repeatable .repeater-add,
+form .repeatable .repeater-remove {
+    cursor: pointer;
+    font-size: 1.5em;
+    line-height: 52px;
+}
+
+form .repeatable:last-child .repeater-remove {
+    display:  none;
+}

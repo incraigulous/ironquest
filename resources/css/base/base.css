@@ -61,3 +61,8 @@
 .large-text {
     font-size: 1.1em;
 }
+
+.no-left {
+    padding-left: 0px;
+    margin-left: 0px;
+}
