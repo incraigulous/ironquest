@@ -1,13 +1,15 @@
-{!! Form::openGroup('milestone[name]') !!}
-{!! Form::text('milestone[name]', null, array('placeholder' => 'Name')) !!}
+<div id="message"></div>
+
+{!! Form::openGroup('milestone_name') !!}
+{!! Form::text('milestone_name', null, array('placeholder' => 'Name')) !!}
 {!! Form::closeGroup() !!}
 
-{!! Form::openGroup('milestone[short]') !!}
-{!! Form::textarea('milestone[short]', null, array('placeholder' => 'Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
+{!! Form::openGroup('milestone_short') !!}
+{!! Form::textarea('milestone_short', null, array('placeholder' => 'Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
 {!! Form::closeGroup() !!}
 
-{!! Form::openGroup('milestone[text]') !!}
-{!! Form::textarea('milestone[text]', null, array('placeholder' => 'Full Text', 'maxlength' => 256, 'rows' => 3)) !!}
+{!! Form::openGroup('milestone_text') !!}
+{!! Form::textarea('milestone_text', null, array('placeholder' => 'Full Text', 'maxlength' => 256, 'rows' => 3)) !!}
 {!! Form::closeGroup() !!}
 
 <hr />
@@ -20,20 +22,20 @@
     {!! Form::closeGroup() !!}
 
     <div class="drawer-target">
-        {!! Form::openGroup('ability[short]') !!}
-        {!! Form::textarea('ability[short]', null, array('class' => 'drawer-toggle', 'placeholder' => 'Ability Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
+        {!! Form::openGroup('ability_short') !!}
+        {!! Form::textarea('ability_short', null, array('class' => 'drawer-toggle', 'placeholder' => 'Ability Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
         {!! Form::closeGroup() !!}
 
-        {!! Form::openGroup('targets[]') !!}
-        {!! Form::select('targets[]', $targetOptions, null, array('multiple' => true, 'placeholder' => 'Select Targets')) !!}
+        {!! Form::openGroup('targets') !!}
+        {!! Form::select('targets', $targetOptions, null, array('multiple' => true, 'placeholder' => 'Select Targets')) !!}
         {!! Form::closeGroup() !!}
 
-        {!! Form::openGroup('ranges[]') !!}
-        {!! Form::select('ranges[]', $rangeOptions, null, array('multiple' => true, 'placeholder' => 'Select Ranges')) !!}
+        {!! Form::openGroup('ranges') !!}
+        {!! Form::select('ranges', $rangeOptions, null, array('multiple' => true, 'placeholder' => 'Select Ranges')) !!}
         {!! Form::closeGroup() !!}
 
-        {!! Form::openGroup('attunements[]') !!}
-        {!! Form::select('attunements[]', $attunementOptions, null, array('multiple' => true, 'placeholder' => 'Select Attunements')) !!}
+        {!! Form::openGroup('attunements') !!}
+        {!! Form::select('attunements', $attunementOptions, null, array('multiple' => true, 'placeholder' => 'Select Attunements')) !!}
         {!! Form::closeGroup() !!}
 
         <hr />
@@ -45,7 +47,6 @@
         {!! Form::inlineCheckbox('rewards_attribute', null, 'It awards an attribute modifier.', false, ['class' => 'drawer-toggle']) !!}
     {!! Form::closeGroup() !!}
 
-
     <div class="drawer-target">
         <div class="repeatable">
                 <div class="col-sm-9 no-left">
@@ -55,7 +56,7 @@
                 </div>
                 <div class="col-sm-2 large-text">
                     {!! Form::openGroup('attribute_modifier[mod][]') !!}
-                    {!! Form::text('milestone[name]', null, array('placeholder' => 'Mod Num', 'id' => 'attribute_modifier')) !!}
+                    {!! Form::text('attribute_modifier[mod][]', Input::old('username'), array('placeholder' => 'Mod Num', 'id' => 'attribute_modifier')) !!}
                     {!! Form::closeGroup() !!}
                 </div>
                 <div class="col-sm-1 large-text">

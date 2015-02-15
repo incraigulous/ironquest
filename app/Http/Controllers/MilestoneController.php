@@ -48,6 +48,7 @@ class MilestoneController extends Controller {
 	 */
 	public function store(MilestoneStoreRequest $request)
 	{
+		dd($request->all());
 		try {
             $this->dispatchFrom('Command\Abilities\CreateAbility', $request);
 		} catch (Exception $exception) {

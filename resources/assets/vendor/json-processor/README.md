@@ -171,7 +171,7 @@ Remove from the dom:
     }
 
 ## Limit targeting
-JSON processor will apply any DOM modifications to the entire document by default. To limit targeting to an element and it's decedents, pass an element when instantiating JsonProcessor.
+JSON processor will apply any DOM modifications to the entire document by default. To limit targeting to an element and it's descendants, pass an element when instantiating JsonProcessor.
 
     var processor = new JsonProcessor($('#target'));
     

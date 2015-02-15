@@ -16,12 +16,14 @@ JsonProcessor.prototype = {
         'message', //Alert a message
         'redirect', //Redirect to a URL in the same window
         'redirectBlank', //Redirect to a URL in a new window
-        'remove' //Remove the element from the dom
+        'remove', //Remove the element from the dom,
+        'bsFieldError' //Sets a bootstrap style error on a field.
     ],
     elementFilters: [
         'attributes', //Set element attributes
         'html', //Sets HTML value
-        'url' //Gets HTML via AJAX and sets HTML value
+        'url', //Gets HTML via AJAX and sets HTML value
+        'bsFieldError' //Sets a bootstrap style error on a field.
     ],
     properties: {}, //The parsed JSON
 
@@ -242,10 +244,34 @@ JsonProcessor.prototype = {
      *
      * @param elements
      */
-    urlFilter: function($url) {
+    urlFilter: function(url) {
         var self = this;
         $(this.properties.target).load($url, function() {
             self.options.contentProcessor(this);
         });
+    },
+
+    /**
+     * Sets a bootstrap style error on a field.
+     *
+     * @param elements
+     */
+    bsFieldErrorFilter: function(message) {
+        var target = $(this.properties.target);
+
+        if (target.data("bsFieldErrorMsg")) {
+            //Remove any existing error messages if they exist
+            target.data("bsFieldErrorMsg").remove();
+        };
+        
+        var group = target.parents('.form-group').first();
+        if (group) {
+            group.addClass('has-error');
+        }
+        group.append('<p class="help-block">' + message + '</p>');
+
+        //Store the error message so we can remove it later
+        var errorMsg = group.children('.help-block').first();
+        target.data("bsFieldErrorMsg", errorMsg)
     }
 };

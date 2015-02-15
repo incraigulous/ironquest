@@ -80,6 +80,12 @@ function process_content(item) {
     jQuery(item).find('.repeatable').each(function(index, el) {
         new Repeater(el);
     });
+
+    jQuery(item).find('.ajax-form').each(function(index, el) {
+        new AjaxForm(el);
+    });
+
+
 }
 
 $(document).ready(function() {

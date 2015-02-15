@@ -5,7 +5,7 @@
     "jasny-bootstrap": "~3.1.3",
     "jquery-colorbox": "~1.5.14",
     "class.js": "https://github.com/incraigulous/classjs.git",
-    "json-processor": "~0.0.4",
+    "json-processor": "https://github.com/incraigulous/json-processor.git#master",
     "jquery-simple-drawer": "~1.0.0",
     "countto": "*",
     "jquery.easing": "~1.3.1",
@@ -16,6 +16,7 @@
     "stickyNavbar.js": "~1.1.3",
     "bootbox": "~4.3.0",
     "bootstrap-multiselect": "~0.9.10",
-    "jquery-repeater": "~1.0.3"
+    "jquery-repeater": "~1.0.3",
+    "jquery-ajax-form": "~0.0.1"
   }
 }

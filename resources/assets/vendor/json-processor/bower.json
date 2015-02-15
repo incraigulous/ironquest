@@ -1,6 +1,6 @@
 {
   "name": "JSON Processor",
-  "version": "0.0.4",
+  "version": "0.0.9",
   "homepage": "https://github.com/incraigulous/json-processor",
   "authors": [
     "Craig Wann <craig@churchonthemove.com>"
@@ -16,6 +16,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "jquery": "~2.1.1"
+    "jquery": ">= 1.9.1"
   }
 }
