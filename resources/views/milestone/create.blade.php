@@ -9,7 +9,7 @@
 
                 <div class="row">
 
-                    {!! Form::open([ 'route' => 'milestones.store', 'class' => 'col-sm-8 col-sm-offset-2 ajax-form']) !!}
+                   {!! BootForm::open()->attribute('class', 'col-sm-8 col-sm-offset-2 ajax-form')->action('/milestones')!!}
                     @include('milestone.form')
 
                         <p class="text-center">
@@ -18,7 +18,7 @@
                                 Create Milestone
                             </button>
                         </p>
-                    {!! Form::close() !!}
+                    {!! BootForm::close() !!}
                 </div>
 
             </div>

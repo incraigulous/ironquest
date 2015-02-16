@@ -29,7 +29,8 @@
         "App\\Providers\\RouteServiceProvider",
         "App\\Providers\\AuthServiceProvider",
         "App\\Providers\\HtmlServiceProvider",
-        "DaveJamesMiller\\Breadcrumbs\\ServiceProvider"
+        "DaveJamesMiller\\Breadcrumbs\\ServiceProvider",
+        "AdamWathan\\BootForms\\BootFormsServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -49,7 +50,8 @@
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
         "App\\Providers\\AuthServiceProvider",
-        "DaveJamesMiller\\Breadcrumbs\\ServiceProvider"
+        "DaveJamesMiller\\Breadcrumbs\\ServiceProvider",
+        "AdamWathan\\BootForms\\BootFormsServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

@@ -148,6 +148,7 @@ return [
 		'App\Providers\AuthServiceProvider',
 		'App\Providers\HtmlServiceProvider',
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
+        'AdamWathan\BootForms\BootFormsServiceProvider'
 
 	],
 
@@ -198,8 +199,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Form'		=> 'Illuminate\Html\FormFacade',
-		'HTML'		=> 'Illuminate\Html\HtmlFacade'
-
+		'HTML'		=> 'Illuminate\Html\HtmlFacade',
+        'BootForm'  => 'AdamWathan\BootForms\Facades\BootForm'
     ],
 
 ];

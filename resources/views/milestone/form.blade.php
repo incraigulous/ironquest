@@ -1,63 +1,37 @@
 <div id="message"></div>
-
-{!! Form::openGroup('milestone_name') !!}
-{!! Form::text('milestone_name', null, array('placeholder' => 'Name')) !!}
-{!! Form::closeGroup() !!}
-
-{!! Form::openGroup('milestone_short') !!}
-{!! Form::textarea('milestone_short', null, array('placeholder' => 'Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
-{!! Form::closeGroup() !!}
-
-{!! Form::openGroup('milestone_text') !!}
-{!! Form::textarea('milestone_text', null, array('placeholder' => 'Full Text', 'maxlength' => 256, 'rows' => 3)) !!}
-{!! Form::closeGroup() !!}
+{!! BootForm::token() !!}
+{!! BootForm::text('Name', 'milestone[name]')->placeholder('Name') !!}
+{!! BootForm::textarea('Short Description', 'milestone[short]')->placeholder('Short Description')->attribute('maxlength', 256)->attribute('rows', 3) !!}
+{!! BootForm::textarea('Full Text', 'milestone[text]')->placeholder('Full Text') !!}
 
 <hr />
 
 <h2>What does it do?</h2>
 
 <div class="drawer">
-    {!! Form::openGroup('rewards_ability') !!}
-    {!! Form::inlineCheckbox('rewards_ability', null, 'It awards an ability.', false, ['class' => 'drawer-toggle']) !!}
-    {!! Form::closeGroup() !!}
+    {!! BootForm::checkbox('It awards an ability.', 'rewards_ability')->attribute('class', 'drawer-toggle') !!}
 
     <div class="drawer-target">
-        {!! Form::openGroup('ability_short') !!}
-        {!! Form::textarea('ability_short', null, array('class' => 'drawer-toggle', 'placeholder' => 'Ability Short Description', 'maxlength' => 256, 'rows' => 3)) !!}
-        {!! Form::closeGroup() !!}
+        {!! BootForm::textarea('Ability Short Description', 'ability[short]')->placeholder('Ability Short Description')->attribute('maxlength', 256)->attribute('rows', 3) !!}
 
-        {!! Form::openGroup('targets') !!}
-        {!! Form::select('targets', $targetOptions, null, array('multiple' => true, 'placeholder' => 'Select Targets')) !!}
-        {!! Form::closeGroup() !!}
-
-        {!! Form::openGroup('ranges') !!}
-        {!! Form::select('ranges', $rangeOptions, null, array('multiple' => true, 'placeholder' => 'Select Ranges')) !!}
-        {!! Form::closeGroup() !!}
-
-        {!! Form::openGroup('attunements') !!}
-        {!! Form::select('attunements', $attunementOptions, null, array('multiple' => true, 'placeholder' => 'Select Attunements')) !!}
-        {!! Form::closeGroup() !!}
+        {!! BootForm::select('Targets', 'targets')->attribute('multiple', true)->attribute('placeholder', 'Select Targets')->options($targetOptions) !!}
+        {!! BootForm::select('Ranges', 'ranges')->attribute('multiple', true)->attribute('placeholder', 'Select Ranges')->options($rangeOptions) !!}
+        {!! BootForm::select('Attunements', 'attunements')->attribute('multiple', true)->attribute('placeholder', 'Select Attunements')->options($attunementOptions) !!}
 
         <hr />
     </div>
 </div>
 
 <div class="drawer">
-    {!! Form::openGroup('rewards_attribute') !!}
-        {!! Form::inlineCheckbox('rewards_attribute', null, 'It awards an attribute modifier.', false, ['class' => 'drawer-toggle']) !!}
-    {!! Form::closeGroup() !!}
+    {!! BootForm::checkbox('It awards an attribute modifier.', 'rewards_attribute')->attribute('class', 'drawer-toggle') !!}
 
     <div class="drawer-target">
         <div class="repeatable">
                 <div class="col-sm-9 no-left">
-                    {!! Form::openGroup('attribute_modifier[id][]') !!}
-                    {!! Form::select('attribute_modifier[id][]', array_merge(array('' => 'Choose Attribute...'), $attributeModifierOptions), array('id' => 'attribute')) !!}
-                    {!! Form::closeGroup() !!}
+                    {!! BootForm::select('Attribute', 'attribute_modifier[id][]')->attribute('id', 'attribute')->options(array_merge(array('' => 'Choose Attribute...'), $attributeModifierOptions)) !!}
                 </div>
                 <div class="col-sm-2 large-text">
-                    {!! Form::openGroup('attribute_modifier[mod][]') !!}
-                    {!! Form::text('attribute_modifier[mod][]', Input::old('username'), array('placeholder' => 'Mod Num', 'id' => 'attribute_modifier')) !!}
-                    {!! Form::closeGroup() !!}
+                    {!! BootForm::text('Attribute Modifier', 'attribute_modifier[mod][]')->attribute('id', 'attribute_modifier')->placeholder('Mod Num') !!}
                 </div>
                 <div class="col-sm-1 large-text">
                     <i class="fa fa-plus repeater-add"></i>
