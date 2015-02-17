@@ -27,11 +27,11 @@
 
     <div class="drawer-target">
         <div class="repeatable">
-                <div class="col-sm-9 no-left">
-                    {!! BootForm::select('Attribute', 'attribute_modifier[id][]')->attribute('id', 'attribute')->options(array_merge(array('' => 'Choose Attribute...'), $attributeModifierOptions)) !!}
+                <div class="col-sm-8 no-left">
+                    {!! BootForm::select('Attribute', 'attribute_modifier[][id]')->attribute('id', 'attribute')->options(array_merge(array('' => 'Choose Attribute...'), $attributeModifierOptions)) !!}
                 </div>
-                <div class="col-sm-2 large-text">
-                    {!! BootForm::text('Attribute Modifier', 'attribute_modifier[mod][]')->attribute('id', 'attribute_modifier')->placeholder('Mod Num') !!}
+                <div class="col-sm-3 large-text">
+                    {!! BootForm::text('Attribute Modifier', 'attribute_modifier[][mod]')->attribute('id', 'attribute_modifier')->attribute('type', 'number')->attribute('value', 0)->placeholder('Mod Num') !!}
                 </div>
                 <div class="col-sm-1 large-text">
                     <i class="fa fa-plus repeater-add"></i>

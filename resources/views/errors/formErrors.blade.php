@@ -1,7 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: craigwann1
- * Date: 2/14/15
- * Time: 11:34 PM
- */
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors as $error)
+                <li>{{ $error[0] }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif

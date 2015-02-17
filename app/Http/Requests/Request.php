@@ -7,6 +7,8 @@ use View;
 abstract class Request extends FormRequest {
     protected $fieldMap = array();
     protected $attributeNames = array();
+    protected $rules = array();
+    protected $messages = array();
 
     public function authorize()
     {
@@ -102,6 +104,56 @@ abstract class Request extends FormRequest {
         $validator = parent::getValidatorInstance();
         $validator->setAttributeNames($this->attributeNames());
         return $validator;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $this->buildRules();
+
+        return $this->rules;
+    }
+
+    /**
+     * Add a custom rule.
+     *
+     * @param $validatorKey
+     * @param $rule
+     */
+    public function addRule($validatorKey, $rule) {
+        $this->rules[$validatorKey] = $rule;
+    }
+
+    /**
+     * Build any custom rules needed.
+     */
+    protected function buildRules()
+    {
+
+    }
+
+    /**
+     * Set custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Add a custom message for a field.
+     *
+     * @param $validatorKey
+     * @param $message
+     */
+    protected function addMessage($validatorKey, $message) {
+        $this->messages[$validatorKey] = $message;
     }
 
 }
