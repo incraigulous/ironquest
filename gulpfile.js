@@ -14,6 +14,7 @@ elixir(function(mix) {
         "plugins/jquery.waypoints-sticky.js",
         "quatro/contact.js",
         "quatro/quatro.js",
+        "preloader.js",
         "main.js"
     ]);
 

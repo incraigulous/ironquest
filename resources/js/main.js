@@ -3,7 +3,8 @@ Page Preloader
 ==============================================*/
 
 $(window).load(function(){
-    $('#page-loader').fadeOut(500);
+    var preloader = new Preloader();
+    preloader.fadeOut();
 });
 
 function process_content(item) {
@@ -82,7 +83,18 @@ function process_content(item) {
     });
 
     jQuery(item).find('.ajax-form').each(function(index, el) {
-        new AjaxForm(el);
+        var preloader = new Preloader();
+        new AjaxForm(el, {
+            beforeSend: function(){
+                preloader.fadeIn();
+                jQuery(el).find('.help-block').each(function(index, el) {
+                    jQuery(el).remove();
+                });
+            },
+            complete: function() {
+                preloader.fadeOut();
+            }
+        });
     });
 
 

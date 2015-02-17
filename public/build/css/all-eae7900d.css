@@ -3675,6 +3675,14 @@ form .form-group .multiselect-container label {
     font-size: 14px;
 }
 
+form .form-group.has-error button.multiselect {
+    border-color: #a94442;
+}
+
+form .form-group.has-error .multiselect-container label {
+    color: #000;
+}
+
 form .repeatable .repeater-add {
     display: none;
 }

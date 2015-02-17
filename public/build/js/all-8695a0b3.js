@@ -3990,12 +3990,36 @@ $(document).ready(function() {
 		},1000);
 	}
 });	
+/**
+ * Created by craigwann1 on 2/16/15.
+ */
+var Preloader = new Class({
+    options: {
+        selector: '#page-loader',
+        inDuration: 0,
+        outDuration: 500
+    },
+
+    initialize: function (options) {
+        this.options = jQuery.extend(true, {}, this.options, options);;
+    },
+
+    fadeIn: function () {
+        $(this.options.selector).fadeIn(this.options.inDuration);
+    },
+
+    fadeOut: function () {
+        $(this.options.selector).fadeOut(this.options.outDuration);
+    }
+
+});
 /*============================================
 Page Preloader
 ==============================================*/
 
 $(window).load(function(){
-    $('#page-loader').fadeOut(500);
+    var preloader = new Preloader();
+    preloader.fadeOut();
 });
 
 function process_content(item) {
@@ -4074,7 +4098,18 @@ function process_content(item) {
     });
 
     jQuery(item).find('.ajax-form').each(function(index, el) {
-        new AjaxForm(el);
+        var preloader = new Preloader();
+        new AjaxForm(el, {
+            beforeSend: function(){
+                preloader.fadeIn();
+                jQuery(el).find('.help-block').each(function(index, el) {
+                    jQuery(el).remove();
+                });
+            },
+            complete: function() {
+                preloader.fadeOut();
+            }
+        });
     });
 
 

@@ -17,11 +17,11 @@
   "dependencies": {
     "jquery": ">= 1.9.1"
   },
-  "_release": "c187617430",
+  "_release": "496695c702",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "c187617430fae3cb951e4cff444a3ab8b72d5799"
+    "commit": "496695c702a216f9450c27d12df6e26142b65b15"
   },
   "_source": "https://github.com/incraigulous/json-processor.git",
   "_target": "master",

@@ -263,7 +263,7 @@ JsonProcessor.prototype = {
             //Remove any existing error messages if they exist
             target.data("bsFieldErrorMsg").remove();
         };
-        
+
         var group = target.parents('.form-group').first();
         if (group) {
             group.addClass('has-error');
