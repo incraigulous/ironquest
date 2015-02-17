@@ -1,11 +1,11 @@
-<?php namespace App\Commands\Abilities;
+<?php namespace App\Commands\Milestones;
 
 use App\Commands\Command,
     Illuminate\Contracts\Bus\SelfHandling,
     App\Ability,
     App\Milestone;
 
-class CreateAbility extends Command implements SelfHandling {
+class CreateMilestone extends Command implements SelfHandling {
 
 	public function __construct(array $ability, array $targets, array $ranges, array $attunements, array $milestone)
 	{
@@ -30,6 +30,8 @@ class CreateAbility extends Command implements SelfHandling {
             $ability->attunements->attach($this->attunements);
             $milestone = new Milestone($this->milestone);
             $ability->milestone()->save($milestone);
+
+            event(new AbilityCreated($this->user, $this->podcast));
         });
 	}
 

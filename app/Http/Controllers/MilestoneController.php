@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Milestones\Milestones, App\Http\Requests\MilestoneUpdateRequest, App\Http\Requests\MilestoneStoreRequest, App\Milestone;
-use View, Input, Config, Redirect, Exception, App\AttributeModifier, App\Target, App\Attunement, App\Range;
+use View, Input, Config, Redirect, Exception, App\AttributeModifier, App\Target, App\Attunement, App\Range, Event, Session;
 
 class MilestoneController extends Controller {
 
@@ -48,16 +48,20 @@ class MilestoneController extends Controller {
 	 */
 	public function store(MilestoneStoreRequest $request)
 	{
-		dd($request->all());
 		try {
-            $this->dispatchFrom('Command\Abilities\CreateAbility', $request);
+            $this->dispatchFrom('Command\Milestones\CreateMilestone', $request);
 		} catch (Exception $exception) {
-			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
-			return Redirect::route('milestones.create');
+			//Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
+			//return Redirect::route('milestones.create');
 		}
 
+        Event::listen('App\Events\CreateMilestone', function($event)
+        {
+            dd($event);
+        });
+
 		Session::flash('message', array('message' => 'Milestone Created!', 'context' => 'success'));
-        return Redirect::route('milestones.edit', array(DB::getPdo()->lastInsertId));
+        return Redirect::route('milestones.edit', array(DB::table('users')->lastInsertId));
 	}
 
 	/**

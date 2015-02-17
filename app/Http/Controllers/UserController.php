@@ -49,7 +49,7 @@ class UserController extends Controller {
             return Redirect::route('users.create')->with('message', 'An error has occured.')->with('context', 'danger');
         }
 
-        return Redirect::route('users.edit', array(DB::getPdo()->lastInsertId()))->with('message', 'User created!')->with('context', 'success');
+        return Redirect::route('users.edit', array(DB::table('users')->lastInsertId()))->with('message', 'User created!')->with('context', 'success');
 	}
 
 	/**
