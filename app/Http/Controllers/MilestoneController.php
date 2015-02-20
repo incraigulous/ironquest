@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Milestones\Milestones, App\Http\Requests\MilestoneUpdateRequest, App\Http\Requests\MilestoneStoreRequest, App\Milestone;
-use View, Input, Config, Redirect, Exception, App\AttributeModifier, App\Target, App\Attunement, App\Range, Event, Session;
+use View, Input, Config, Redirect, Exception, App\AttributeModifier, App\Target, App\Attunement, App\Range, Event, Session, Illuminate\Http\JsonResponse;
 
 class MilestoneController extends Controller {
 
@@ -49,19 +49,16 @@ class MilestoneController extends Controller {
 	public function store(MilestoneStoreRequest $request)
 	{
 		try {
-            $this->dispatchFrom('Command\Milestones\CreateMilestone', $request);
+            $this->dispatchFrom('App\Commands\Milestones\CreateMilestone', $request);
 		} catch (Exception $exception) {
-			//Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
-			//return Redirect::route('milestones.create');
+			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
+            return new JsonResponse(array(
+                'message' => $exception->getMessage()
+            ));
 		}
-
-        Event::listen('App\Events\CreateMilestone', function($event)
-        {
-            dd($event);
-        });
-
-		Session::flash('message', array('message' => 'Milestone Created!', 'context' => 'success'));
-        return Redirect::route('milestones.edit', array(DB::table('users')->lastInsertId));
+        return new JsonResponse(array(
+            'redirect' => '/milestones'
+        ));
 	}
 
 	/**

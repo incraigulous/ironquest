@@ -3,11 +3,12 @@
 use App\Commands\Command,
     Illuminate\Contracts\Bus\SelfHandling,
     App\Ability,
-    App\Milestone;
+    App\Milestone,
+    DB;
 
 class CreateMilestone extends Command implements SelfHandling {
 
-	public function __construct(array $ability, array $targets, array $ranges, array $attunements, array $milestone)
+	public function __construct($ability, $targets, $ranges, $attunements, $milestone)
 	{
 		$this->ability = $ability;
         $this->targets = $targets;
@@ -25,13 +26,11 @@ class CreateMilestone extends Command implements SelfHandling {
 	{
         DB::transaction(function() {
             $ability = Ability::create($this->ability);
-            $ability->targets->attach($this->targets);
-            $ability->ranges->attach($this->ranges);
-            $ability->attunements->attach($this->attunements);
+            $ability->targets()->attach($this->targets);
+            $ability->ranges()->attach($this->ranges);
+            $ability->attunements()->attach($this->attunements);
             $milestone = new Milestone($this->milestone);
             $ability->milestone()->save($milestone);
-
-            event(new AbilityCreated($this->user, $this->podcast));
         });
 	}
 

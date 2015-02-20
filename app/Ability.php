@@ -10,6 +10,7 @@ class Ability extends Model {
     //protected $primaryKey = '';
 
     protected $guarded = [];
+    protected $table = 'ability';
 
     public function milestone() {
         return $this->hasOne('App\Milestone', 'id', 'ability_id');
@@ -27,6 +28,6 @@ class Ability extends Model {
 
     public function attunements()
     {
-        return $this->belongsToMany('App\Attunements', 'ability_has_attunements', 'ability_id', 'attunements_id');
+        return $this->belongsToMany('App\Attunement', 'ability_has_attunements', 'ability_id', 'attunements_id');
     }
 }
