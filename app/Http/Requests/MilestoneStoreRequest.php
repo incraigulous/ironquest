@@ -12,6 +12,8 @@ class MilestoneStoreRequest extends Request {
         'milestone.short' => 'milestone[short]',
         'milestone.text' => 'milestone[text]',
         'ability.short' => 'ability[short]',
+        'targets' => 'targets[]',
+        'ranges' => 'ranges[]'
     ];
 
     /**

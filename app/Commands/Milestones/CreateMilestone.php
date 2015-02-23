@@ -4,21 +4,23 @@ use App\Commands\Command,
     Illuminate\Contracts\Bus\SelfHandling,
     App\Ability,
     App\Milestone,
+    App\AttributeModifier,
     DB;
 
 class CreateMilestone extends Command implements SelfHandling {
 
-	public function __construct($ability = array(), $targets = array(), $ranges = array(), $attunements = array(), $milestone = array())
+	public function __construct($milestone, $ability = array(), $targets = array(), $ranges = array(), $attunements = array(), $attributeModifiers = array())
 	{
 		$this->ability = $ability;
         $this->targets = $targets;
         $this->ranges = $ranges;
         $this->attunements = $attunements;
         $this->milestone = $milestone;
+        $this->attributeModifiers = $attributeModifiers;
 	}
 
 	/**
-	 * Insert the ability and all of it's relationships.
+	 * Insert the milestone along with it's relationships if we have data for them.
 	 *
 	 * @return void
 	 */
@@ -31,7 +33,17 @@ class CreateMilestone extends Command implements SelfHandling {
                 $ability->targets()->attach($this->targets);
                 $ability->ranges()->attach($this->ranges);
                 $ability->attunements()->attach($this->attunements);
+                $ability->save();
                 $ability->milestone()->save($milestone);
+            }
+
+            if (count($this->attributeModifiers)) {
+                $attributeModifier = new AttributeModifier();
+                foreach($this->attributeModifiers as $input) {
+                    $attributeModifier->$input['id'] = $input['mod'];
+                }
+                $attributeModifier->save();
+                $attributeModifier->milestone()->save($milestone);
             }
 
             if (!$milestone->id) {

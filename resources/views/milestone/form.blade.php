@@ -1,3 +1,5 @@
+
+
 <div id="message"></div>
 {!! BootForm::token() !!}
 {!! BootForm::text('Name', 'milestone[name]')->placeholder('Name') !!}
@@ -13,9 +15,9 @@
 
     <div class="drawer-target">
         {!! BootForm::textarea('Ability Short Description', 'ability[short]')->placeholder('Ability Short Description')->attribute('maxlength', 256)->attribute('rows', 3) !!}
-        {!! BootForm::select('Targets', 'targets')->attribute('multiple', true)->attribute('placeholder', 'Select Targets')->options($targetOptions) !!}
-        {!! BootForm::select('Ranges', 'ranges')->attribute('multiple', true)->attribute('placeholder', 'Select Ranges')->options($rangeOptions) !!}
-        {!! BootForm::select('Attunements', 'attunements')->attribute('multiple', true)->attribute('placeholder', 'Select Attunements')->options($attunementOptions) !!}
+        {!! BootForm::select('Targets', 'targets[]')->attribute('multiple', true)->attribute('placeholder', 'Select Targets')->options($targetOptions) !!}
+        {!! BootForm::select('Ranges', 'ranges[]')->attribute('multiple', true)->attribute('placeholder', 'Select Ranges')->options($rangeOptions) !!}
+        {!! BootForm::select('Attunements', 'attunements[]')->attribute('multiple', true)->attribute('placeholder', 'Select Attunements')->options($attunementOptions) !!}
 
         <hr />
     </div>
@@ -38,5 +40,6 @@
                 </div>
          </div>
     </div>
+
 </div>
 

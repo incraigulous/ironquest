@@ -12,4 +12,9 @@ class Milestone extends Model {
     protected $fillable = [];
 
     protected $guarded = array('id');
+
+    public function attributeModifier()
+    {
+        return $this->hasOne('App\AttributeModifier', 'id', 'attribute_modifier_id');
+    }
 }

@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Commands\Milestones\CreateMilestone;
 use App\Milestones\Milestones, App\Http\Requests\MilestoneUpdateRequest, App\Http\Requests\MilestoneStoreRequest, App\Milestone;
 use View, Input, Config, Redirect, Exception, App\AttributeModifier, App\Target, App\Attunement, App\Range, Event, Session, Illuminate\Http\JsonResponse;
 
@@ -44,14 +45,22 @@ class MilestoneController extends Controller {
 	 * Store a newly created resource in storage.
 	 * POST /milestone
 	 *
-	 * @return Response
+	 * @return JsonResponse
 	 */
 	public function store(MilestoneStoreRequest $request)
 	{
 		try {
-            $this->dispatchFrom('App\Commands\Milestones\CreateMilestone', $request);
+            $this->dispatch(
+                new CreateMilestone(
+                    $request->get('milestone'),
+                    ($request->has('rewards_ability')) ? $request->get('ability') : array(),
+                    ($request->has('rewards_ability')) ? $request->get('targets') : array(),
+                    ($request->has('rewards_ability')) ? $request->get('ranges') : array(),
+                    ($request->has('rewards_ability')) ? $request->get('attunements') : array(),
+                    ($request->has('rewards_attribute')) ? $request->get('attribute_modifier') : array()
+                )
+            );
 		} catch (Exception $exception) {
-			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
             return new JsonResponse(array(
                 'message' => $exception->getMessage()
             ));

@@ -12,6 +12,6 @@ class Target extends Model {
     protected $fillable = [];
 
     public function target() {
-        return $this->belongsToMany('App\Target', 'ability_has_targets');
+        return $this->belongsToMany('App\Ability', 'ability_has_targets');
     }
 }

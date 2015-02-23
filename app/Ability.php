@@ -13,7 +13,7 @@ class Ability extends Model {
     protected $table = 'ability';
 
     public function milestone() {
-        return $this->hasOne('App\Milestone', 'id', 'ability_id');
+        return $this->hasOne('App\Milestone', 'ability_id', 'id');
     }
 
     public function ranges()

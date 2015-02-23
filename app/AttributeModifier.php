@@ -10,4 +10,8 @@ class AttributeModifier extends Model {
     //protected $primaryKey = '';
 
     protected $fillable = [];
+
+    public function milestone() {
+        return $this->hasOne('App\Milestone', 'attribute_modifiers_id', 'id');
+    }
 }
