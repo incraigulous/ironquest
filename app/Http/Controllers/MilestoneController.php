@@ -79,7 +79,7 @@ class MilestoneController extends Controller {
 	 */
 	public function show($id)
 	{
-        return Redirect::to('/milestone/' . $id . '/edit');
+        return Redirect::to('/milestones/' . $id . '/edit');
 	}
 
 	/**
@@ -97,7 +97,13 @@ class MilestoneController extends Controller {
             return $this->message('No milestone found', $this->$notFoundMessage);
         }
 
-        return View::make('milestone.edit', $milestone);
+        return View::make('milestone.update', array(
+            'milestone' => $milestone,
+            'attributeModifierOptions' => AttributeModifier::listColumnOptions(),
+            'targetOptions' => Target::listOptions(),
+            'attunementOptions' => Attunement::listOptions(),
+            'rangeOptions' => Range::listOptions()
+        ));
 	}
 
 	/**
@@ -109,15 +115,25 @@ class MilestoneController extends Controller {
 	 */
 	public function update(MilestoneUpdateRequest $request, $id)
 	{
-		try {
-			$this->milestones->update(Input::all());
-		} catch (Exception $exception) {
-			Session::flash('message', array('message' => $this->errorFlash, 'context' => 'danger'));
-			return Redirect::route('milestones.edit', $id);
-		}
-
-		Session::flash('message', array('message' => 'Milestone updated!', 'context' => 'success'));
-        return Redirect::route('milestones.edit', $id);
+        try {
+            $this->dispatch(
+                new UpdateMilestone(
+                    $request->get('milestone'),
+                    ($request->has('rewards_ability')) ? $request->get('ability') : array(),
+                    ($request->has('rewards_ability')) ? $request->get('targets') : array(),
+                    ($request->has('rewards_ability')) ? $request->get('ranges') : array(),
+                    ($request->has('rewards_ability')) ? $request->get('attunements') : array(),
+                    ($request->has('rewards_attribute')) ? $request->get('attribute_modifier') : array()
+                )
+            );
+        } catch (Exception $exception) {
+            return new JsonResponse(array(
+                'message' => $exception->getMessage()
+            ));
+        }
+        return new JsonResponse(array(
+            'redirect' => '/milestones'
+        ));
 	}
 
 	/**

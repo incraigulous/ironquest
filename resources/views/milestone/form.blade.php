@@ -2,9 +2,9 @@
 
 <div id="message"></div>
 {!! BootForm::token() !!}
-{!! BootForm::text('Name', 'milestone[name]')->placeholder('Name') !!}
-{!! BootForm::textarea('Short Description', 'milestone[short]')->placeholder('Short Description')->attribute('maxlength', 256)->attribute('rows', 3) !!}
-{!! BootForm::textarea('Full Text', 'milestone[text]')->placeholder('Full Text') !!}
+{!! BootForm::text('Name', 'milestone[name]')->placeholder('Name')->defaultValue(@$milestone->name) !!}
+{!! BootForm::textarea('Short Description', 'milestone[short]')->placeholder('Short Description')->attribute('maxlength', 256)->attribute('rows', 3)->defaultValue(@$milestone->short) !!}
+{!! BootForm::textarea('Full Text', 'milestone[text]')->placeholder('Full Text')->defaultValue(@$milestone->text) !!}
 
 <hr />
 

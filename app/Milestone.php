@@ -15,6 +15,6 @@ class Milestone extends Model {
 
     public function attributeModifier()
     {
-        return $this->hasOne('App\AttributeModifier', 'id', 'attribute_modifier_id');
+        return $this->belongsTo('App\AttributeModifier', 'attribute_modifier_id', 'id');
     }
 }
